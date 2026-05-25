@@ -30,16 +30,16 @@ export function SwipeStockCard({
 
   return (
     <div className="relative overflow-hidden rounded-[28px]">
-      <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-4">
+      <div className="absolute inset-y-0 right-0 flex w-[104px] items-center justify-end gap-2 rounded-[28px] bg-[linear-gradient(135deg,rgba(79,172,254,0.14),rgba(0,242,254,0.18))] pr-3">
         <AlertModal ticker={stock.ticker}>
-          <Button size="icon" variant="secondary" className="size-12 rounded-2xl">
+          <Button size="icon" variant="secondary" className="size-11 rounded-2xl">
             <Bell className="size-4" />
           </Button>
         </AlertModal>
         <Button
           size="icon"
           variant="outline"
-          className="size-12 rounded-2xl text-rose-500"
+          className="size-11 rounded-2xl text-rose-500"
           onClick={onRemove}
         >
           <Trash2 className="size-4" />
@@ -53,10 +53,7 @@ export function SwipeStockCard({
         style={{ x }}
         whileTap={{ scale: 0.995 }}
       >
-        <Card className="fintech-shadow relative overflow-hidden p-4">
-          <div className="absolute right-4 top-4 rounded-full bg-white/40 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground dark:bg-white/8">
-            左滑
-          </div>
+        <Card className="fintech-shadow relative overflow-hidden bg-white/82 p-4 dark:bg-[#0d203dcc]">
           <div className="flex items-center gap-3">
             <div
               className={cn(
@@ -70,14 +67,19 @@ export function SwipeStockCard({
               <div className="flex items-center gap-2">
                 <p className="font-display text-base font-semibold">{stock.ticker}</p>
                 <GripHorizontal className="size-3.5 text-muted-foreground" />
+                <span className="rounded-full bg-white/55 px-2 py-0.5 text-[10px] font-semibold text-muted-foreground dark:bg-white/10">
+                  左滑
+                </span>
               </div>
               <p className="truncate text-xs text-muted-foreground">{stock.company}</p>
             </div>
-            <div className="text-right">
-              <p className="font-display text-base font-semibold">{stock.priceLabel}</p>
+            <div className="min-w-[88px] shrink-0 text-right">
+              <p className="font-display text-base font-semibold leading-none tracking-normal">
+                {stock.priceLabel}
+              </p>
               <p
                 className={cn(
-                  "text-xs font-semibold",
+                  "mt-1 text-xs font-semibold leading-none",
                   stock.change >= 0 ? "text-emerald-500" : "text-rose-500",
                 )}
               >
@@ -86,7 +88,7 @@ export function SwipeStockCard({
             </div>
           </div>
           <div className="mt-4 flex items-end gap-3">
-            <div className="h-16 flex-1">
+            <div className="h-16 min-w-0 flex-1">
               <SparklineChart
                 data={stock.sparkline}
                 color={stock.change >= 0 ? "#00d7fe" : "#f97373"}
@@ -94,7 +96,7 @@ export function SwipeStockCard({
               />
             </div>
             <AlertModal ticker={stock.ticker}>
-              <Button size="sm" variant="ghost" className="rounded-2xl">
+              <Button size="sm" variant="ghost" className="shrink-0 rounded-2xl">
                 提醒
               </Button>
             </AlertModal>
