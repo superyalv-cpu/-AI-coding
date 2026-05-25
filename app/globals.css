@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-jakarta);
+  --font-display: var(--font-space);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --font-jakarta:
+    "Avenir Next", "Aptos", "SF Pro Display", "Segoe UI", sans-serif;
+  --font-space:
+    "Avenir Next Demi Bold", "Avenir Next", "Helvetica Neue", sans-serif;
+  --background: #edf7ff;
+  --foreground: #0f2340;
+  --card: rgba(255, 255, 255, 0.58);
+  --card-foreground: #0f2340;
+  --popover: rgba(245, 252, 255, 0.92);
+  --popover-foreground: #10233d;
+  --primary: #1c8eff;
+  --primary-foreground: #effbff;
+  --secondary: rgba(255, 255, 255, 0.68);
+  --secondary-foreground: #183454;
+  --muted: rgba(119, 167, 212, 0.15);
+  --muted-foreground: #6a809b;
+  --accent: #00d9ff;
+  --accent-foreground: #062844;
+  --border: rgba(255, 255, 255, 0.52);
+  --input: rgba(255, 255, 255, 0.72);
+  --ring: rgba(79, 172, 254, 0.34);
+}
+
+.dark {
+  --background: #06152b;
+  --foreground: #ecf7ff;
+  --card: rgba(14, 31, 55, 0.72);
+  --card-foreground: #f5fbff;
+  --popover: rgba(10, 27, 49, 0.94);
+  --popover-foreground: #f5fbff;
+  --primary: #56b4ff;
+  --primary-foreground: #05203a;
+  --secondary: rgba(23, 48, 81, 0.7);
+  --secondary-foreground: #dceeff;
+  --muted: rgba(64, 102, 153, 0.2);
+  --muted-foreground: #8daac7;
+  --accent: #4ef4ff;
+  --accent-foreground: #032038;
+  --border: rgba(150, 208, 255, 0.16);
+  --input: rgba(19, 41, 74, 0.84);
+  --ring: rgba(83, 186, 255, 0.45);
+}
+
+* {
+  @apply border-border;
+}
+
+html {
+  background:
+    radial-gradient(circle at top, rgba(79, 172, 254, 0.26), transparent 34%),
+    linear-gradient(180deg, #f5fbff 0%, #e9f5ff 45%, #edf7ff 100%);
+}
+
+html.dark {
+  background:
+    radial-gradient(circle at top, rgba(79, 172, 254, 0.22), transparent 28%),
+    linear-gradient(180deg, #081726 0%, #07162b 45%, #0a1d35 100%);
+}
+
+body {
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(79, 172, 254, 0.22), transparent 24%),
+    radial-gradient(circle at 80% 0%, rgba(0, 242, 254, 0.16), transparent 20%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(230, 245, 255, 0.82) 100%);
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(79, 172, 254, 0.18), transparent 24%),
+    radial-gradient(circle at 80% 0%, rgba(0, 242, 254, 0.1), transparent 20%),
+    linear-gradient(180deg, rgba(6, 15, 32, 0.92) 0%, rgba(8, 20, 40, 0.96) 100%);
+}
+
+@layer base {
+  body {
+    @apply text-foreground;
+  }
+
+  button,
+  input,
+  textarea {
+    @apply outline-none;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.28)),
+      rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.48);
+    box-shadow:
+      0 22px 40px rgba(12, 42, 89, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  }
+
+  .dark .glass-card {
+    background:
+      linear-gradient(135deg, rgba(18, 39, 68, 0.82), rgba(12, 28, 54, 0.5)),
+      rgba(8, 20, 40, 0.52);
+    border-color: rgba(142, 204, 255, 0.12);
+    box-shadow:
+      0 22px 40px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(130, 190, 255, 0.09);
+  }
+
+  .fintech-shadow {
+    box-shadow:
+      0 30px 60px rgba(63, 138, 255, 0.14),
+      0 12px 24px rgba(0, 109, 204, 0.08);
+  }
+
+  .glow-ring {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.26),
+      0 10px 30px rgba(79, 172, 254, 0.25);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #4facfe 0%, #00d6fe 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
